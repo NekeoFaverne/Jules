@@ -14,7 +14,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     if (msg.content === 'ping') {
-        return msg.reply('Tu veux que je Ping tout le monde avec le @everyone ? :o');
+        return msg.reply('Tu veux que je Ping tout le monde avec le @everyone ? :scream:');
     }
 });
 
