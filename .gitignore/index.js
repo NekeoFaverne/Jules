@@ -27,7 +27,7 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-    if (msg.content === 'Pong ! Tu ne peux pas me vaincre. :smirk:') {
+    if (msg.content === 'Pong ! Tu ne peux pas me vaincre. 😏') {
         msg.react('🏆');
     }
 });
