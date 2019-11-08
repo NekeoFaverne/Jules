@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const Mdr = [""];
 
 client.on('ready', () => {
     console.log("Connecté en tant que " + client.user.tag + " !")
@@ -14,7 +15,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     if (msg.content === 'ping') {
-        return msg.reply('tu veux que je Ping tout le monde avec le @ everyone ? :smirk:');
+        return msg.reply('pong ! Tu ne peux pas me vaincre. :smirk:');
     }
 });
 
@@ -26,7 +27,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
     if (msg.content === 'Mdr') {
-        msg.channel.send(":joy:");
+        msg.react("😂");
     }
 });
 client.on('message', msg => {
