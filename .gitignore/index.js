@@ -1,6 +1,5 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
-const Mdr = [""];
 
 client.on('ready', () => {
     console.log("Connecté en tant que " + client.user.tag + " !")
@@ -27,7 +26,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
     if (msg.content === 'Mdr') {
-        msg.react("😂");
+        msg.channel.send(":joy:");
     }
 });
 client.on('message', msg => {
