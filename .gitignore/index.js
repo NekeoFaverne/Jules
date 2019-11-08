@@ -26,12 +26,12 @@ client.on('message', msg => {
 
 client.on('message', msg => {
     if (msg.content === 'Mdr') {
-        message.react(😂);
+        message.react(joy);
     }
 });
 client.on('message', msg => {
     if (msg.content === 'mdr') {
-        message.react(😂);
+        message.react(joy);
     }
 });
 
