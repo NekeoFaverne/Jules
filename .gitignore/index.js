@@ -14,24 +14,40 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     if (msg.content === 'ping') {
-        return msg.reply('Pong ! Tu ne peux pas me vaincre. :smirk:');
+        msg.reply('Pong ! Tu ne peux pas me vaincre. :smirk:');
+        msg.react('🏓');
+    }
+});
+
+client.on('message', msg => {
+    if (msg.content === 'Ping') {
+        msg.reply('Pong ! Tu ne peux pas me vaincre. :smirk:');
+        msg.react('🏓');
+    }
+});
+
+client.on('message', msg => {
+    if (msg.content === 'Pong ! Tu ne peux pas me vaincre. :smirk:') {
+        msg.react('🏆');
     }
 });
 
 client.on('message', msg => {
     if (msg.content === 'pong') {
         msg.channel.send("C'est moi qui le fait ça... :thumbsdown: ");
+        msg.react('😤');
     }
 });
 
 client.on('message', msg => {
     if (msg.content === 'Mdr') {
-        message.react(joy);
+        msg.react('😂');
     }
 });
+
 client.on('message', msg => {
     if (msg.content === 'mdr') {
-        message.react(joy);
+        msg.react('😂');
     }
 });
 
