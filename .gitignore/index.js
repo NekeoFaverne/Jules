@@ -14,13 +14,13 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     if (msg.content === 'ping') {
-        return msg.reply('pong ! Tu ne peux pas me vaincre. :smirk:');
+        return msg.reply('Pong ! Tu ne peux pas me vaincre. :smirk:');
     }
 });
 
 client.on('message', msg => {
     if (msg.content === 'pong') {
-        msg.channel.send("C'est ma réponse ça... :thumbsdown: ");
+        msg.channel.send("C'est moi qui le fait ça... :thumbsdown: ");
     }
 });
 
