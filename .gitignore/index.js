@@ -37,7 +37,7 @@ client.on('message', msg => {
                 }
             })
             .catch(collected => {
-                msg.reply('');
+                msg.reply("tu n'a rien compris, il fallait mettre la réaction...");
             });
     }
 });
@@ -65,7 +65,7 @@ client.on('message', msg => {
                 }
             })
             .catch(collected => {
-                msg.reply('');
+                msg.reply("tu n'a rien compris, il fallait mettre la réaction...");
             });
     }
 });
