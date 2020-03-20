@@ -1,8 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
-var nb = Math.floor(Math.random() * 2);
-
 client.on('ready', () => {
     console.log("Connecté en tant que " + client.user.tag + " !")
 
@@ -15,82 +13,131 @@ client.on('ready', () => {
 })
 
 client.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.reply('pong ! Je doute que tu gagnes... :smirk:');
+    if (msg.content.includes("LOL") || msg.content.includes("lol") || msg.content.includes("Lol") || msg.content.includes("MDR") || msg.content.includes("Mdr") || msg.content.includes("mdr") || msg.content.includes("😂") || msg.content.includes("😆") || msg.content.includes("🤣")) {
+        if (msg.author.bot) return;
+        em = Math.floor(Math.random() * 4 + 1);
+        if (em === 1) {
+            msg.react('😂');
+        }
+        if (em === 2) {
+            msg.react('😆');
+        }
+        if (em === 3) {
+            msg.react('🤣');
+        }
+    }
+});
+
+client.on('message', msg => {
+    if (msg.content.includes("Bonjour") || msg.content.includes("bonjour") || msg.content.includes("BONJOUR") || msg.content.includes("Salut") || msg.content.includes("salut") || msg.content.includes("SALUT") || msg.content.includes("Bonsoir") || msg.content.includes("bonsoir") || msg.content.includes("BONSOIR") || msg.content.includes("Hei") || msg.content.includes("hei") || msg.content.includes("HEI")) {
+        if (msg.author.bot) return;
+        bo = Math.floor(Math.random() * 2 + 1);
+        if (bo === 1) {
+            msg.channel.sendMessage('Bonjour ' + msg.author + " !");
+        }
+        if (bo === 2) {
+            msg.channel.sendMessage('Hei ' + msg.author + " !");
+        }
+        if (bo === 3) {
+            msg.channel.sendMessage('Salut ' + msg.author + " !");
+        }
+    }
+});
+
+client.on('message', msg => {
+    if (msg.content === 'ping' || msg.content === 'Ping') {
+        me = Math.floor(Math.random() * 2 + 1);
+        if (me === 1) {
+            msg.reply('pong ! Je doute que tu gagnes avec mon smash... 😏');
+        }
+        if (me == 2) {
+            msg.reply("pong ! Tu as de la chance je n'ai pas mit toute ma force ! 😜");
+        }
+        if (me == 3) {
+            msg.reply("pong ! Wow, franchement si tu rates celle là tu n'es pas doué... 😂");
+        }
         msg.react('🏓');
         const filter = (reaction, user) => {
             return ['🏓'].includes(reaction.emoji.name) && user.id === msg.author.id;
         };        
-        msg.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+        msg.awaitReactions(filter, { max: 1, time: 5000, errors: ['time'] })
             .then(collected => {
                 const reaction = collected.first();
         
                 if (reaction.emoji.name === '🏓') {
-                    nb = Math.floor(Math.random() * 2);
+                    nb = Math.floor(Math.random() * 14 + 1);
                     if (nb === 1) {
-                    msg.reply('Smash ! Quelle belle frappe ! Tu as gagné... 😓');
-                    } else {
-                        msg.reply('Smash ! Héhé, tu as perdu ! 🏓');
+                        msg.channel.sendMessage("Tu viens de faire un smash ! Mon dieu quelle belle frappe ! Trop dur à contrer, tu as gagné... 😓");
                     }
-                } else {
-                    msg.reply('laisse tomber...');
+                    if (nb === 2 || nb === 10 || nb === 11 || nb === 12)
+                    {
+                        msg.channel.sendMessage("Tu as fait un smash exeptionnel ! Mais je l'ai contré, à ton tour ! 😱")
+                        .then(function(msge) {
+                            msge.react("🏓")
+                            msge.awaitReactions(filter, { max: 1, time: 5000, errors: ['time'] })
+                            .then(collected => {
+                                const reaction = collected.first();
+                                if (reaction.emoji.name === '🏓') {
+                                    nb = Math.floor(Math.random() * 9 + 1);
+                                    if (nb === 1) {
+                                        msge.channel.sendMessage("Beau smash ! Je l'ai ratée... Tu as gagné... 😓");
+                                    }
+                                    if (nb === 2) {
+                                        msge.channel.sendMessage("Pas mal ton contre ! Mais la balle était trop loin pour moi, tu as gagné... 😓");
+                                    }
+                                    if (nb == 3 || nb == 4 || nb == 5) {
+                                        msge.channel.sendMessage("Sympa ton smash ! Et bim ! Tu as raté le miens, trop vite pour toi ! 🏓");
+                                    }
+                                    if (nb == 6 || nb == 7 || nb == 8 || nb == 9 || nb == 10) {
+                                        msge.channel.sendMessage("Bien ton contre ! Et paff ! Tu as raté mon smash ! 🏓");
+                                    }
+                                    
+                                }})
+                                .catch(collected => {
+                                    msg.reply("tu viens de laisser tomber la balle... 😂");
+                                });
+                        })
+                        
+                    }
+                    if (nb == 3 || nb == 4 || nb == 5 || nb === 13 || nb === 14) {
+                        msg.channel.sendMessage("Tu as réussi à contrer ça, mais vas-tu réussir à faire de même pour mon smash ? 😏")
+                        .then(function(message) {
+                            message.react("🏓")
+                            message.awaitReactions(filter, { max: 1, time: 5000, errors: ['time'] })
+                            .then(collected => {
+                                const reaction = collected.first();
+                                if (reaction.emoji.name === '🏓') {
+                                    nb = Math.floor(Math.random() * 9 + 1);
+                                    if (nb === 1) {
+                                        message.channel.sendMessage("Beau smash ! Je l'ai ratée... Tu as gagné... 😓");
+                                    }
+                                    if (nb === 2) {
+                                        message.channel.sendMessage("Pas mal ton contre ! Mais la balle était trop loin pour moi, tu as gagné... 😓");
+                                    }
+                                    if (nb == 3 || nb == 4 || nb == 5) {
+                                        message.channel.sendMessage("Sympa ton smash ! Et bim ! Tu as raté le miens, trop vite pour toi ! 🏓");
+                                    }
+                                    if (nb == 6 || nb == 7 || nb == 8 || nb == 9 || nb == 10) {
+                                        message.channel.sendMessage("Bien ton contre ! Et paff ! Tu as raté mon smash ! 🏓");
+                                    }
+                                    
+                                }})
+                                .catch(collected => {
+                                    msg.reply("tu viens de laisser tomber la balle... 😂");
+                                });
+                        })
+                    }
+                    if (nb == 8 || nb == 9 || nb == 10) {
+                        msg.channel.sendMessage("Ton contre était juste, mais tu as raté mon petit smash ! 🏓");
+                    }
+                    if (nb == 6 || nb == 7 || nb === 15) {
+                        msg.channel.sendMessage("Bien tenté ton smash ! Tu as raté quand même ma frappe ! 🏓");
+                    }
                 }
             })
             .catch(collected => {
-                msg.reply("tu n'a rien compris, il fallait mettre la réaction...");
+                msg.reply("Mais... Tu ne l'as même pas frappé... 😂");
             });
-    }
-});
-
-client.on('message', msg => {
-    if (msg.content === 'Ping') {
-        msg.reply("pong ! J'ai plus d'un tour dans mon sac... :smirk:");
-        msg.react('🏓');
-        const filter = (reaction, user) => {
-            return ['🏓'].includes(reaction.emoji.name) && user.id === msg.author.id;
-        };        
-        msg.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-            .then(collected => {
-                const reaction = collected.first();
-        
-                if (reaction.emoji.name === '🏓') {
-                    nb = Math.floor(Math.random() * 2);
-                    if (nb === 1) {
-                    msg.reply('Smash ! Quelle belle frappe ! Tu as gagné... 😓');
-                    } else {
-                        msg.reply('Smash ! Héhé, tu as perdu ! 🏓');
-                    }
-                } else {
-                    msg.reply('laisse tomber...');
-                }
-            })
-            .catch(collected => {
-                msg.reply("tu n'a rien compris, il fallait mettre la réaction...");
-            });
-    }
-});
-
-client.on('message', msg => {
-    if (msg.content === 'Pong ! Tu ne peux pas me vaincre. :smirk:') {
-        msg.react('🏆');
-    }
-});
-
-client.on('message', msg => {
-    if (msg.content === 'pong') {
-        msg.channel.send("C'est moi qui le fait ça... :thumbsdown: ");
-    }
-});
-
-client.on('message', msg => {
-    if (msg.content === 'Mdr') {
-        msg.react('😂');
-    }
-});
-
-client.on('message', msg => {
-    if (msg.content === 'mdr') {
-        msg.react('😂');
     }
 });
 
