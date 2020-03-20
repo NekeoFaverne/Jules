@@ -13,7 +13,7 @@ client.on('ready', () => {
 })
 
 client.on('message', msg => {
-    if (msg.content.includes("LOL") || msg.content.includes("lol") || msg.content.includes("Lol") || msg.content.includes("MDR") || msg.content.includes("Mdr") || msg.content.includes("mdr") || msg.content.includes("😂") || msg.content.includes("😆") || msg.content.includes("🤣") || msg.content.includes("xD") || msg.content.includes("xd") || msg.content.includes("XD") || msg.content.includes("x)") {
+    if (msg.content.includes("LOL") || msg.content.includes("lol") || msg.content.includes("Lol") || msg.content.includes("MDR") || msg.content.includes("Mdr") || msg.content.includes("mdr") || msg.content.includes("😂") || msg.content.includes("😆") || msg.content.includes("🤣") || msg.content.includes("xD") || msg.content.includes("xd") || msg.content.includes("XD") || msg.content.includes("x)")) {
         if (msg.author.bot) return;
         em = Math.floor(Math.random() * 4 + 1);
         if (em === 1) {
