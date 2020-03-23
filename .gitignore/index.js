@@ -13,7 +13,7 @@ client.on('ready', () => {
 })
 
 client.on('message', msg => {
-    if (msg.content.includes("LOL ") || msg.content.includes("lol ") || msg.content.includes("Lol ") || msg.content.includes("MDR ") || msg.content.includes("Mdr ") || msg.content.includes("mdr ") || msg.content.includes("😂") || msg.content.includes("😆") || msg.content.includes("🤣") || msg.content.includes("xD ") || msg.content.includes("xd ") || msg.content.includes("XD ") || msg.content.includes("x) ")) {
+    if (msg.content.includes("LOL") || msg.content.includes("lol") || msg.content.includes("Lol") || msg.content.includes("MDR ") || msg.content.includes("Mdr") || msg.content.includes("mdr") || msg.content.includes("😂") || msg.content.includes("😆") || msg.content.includes("🤣") || msg.content.includes("xD") || msg.content.includes("xd") || msg.content.includes("XD") || msg.content.includes("x)")) {
         if (msg.author.bot) return;
         em = Math.floor(Math.random() * 4 + 1);
         if (em === 1) {
@@ -29,7 +29,7 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-    if (msg.content.includes("Bonjour ") || msg.content.includes("bonjour ") || msg.content.includes("BONJOUR ") || msg.content.includes("Salut ") || msg.content.includes("salut ") || msg.content.includes("SALUT ") || msg.content.includes("Bonsoir") || msg.content.includes("bonsoir ") || msg.content.includes("BONSOIR ") || msg.content.includes("Hei ") || msg.content.includes("hei ") || msg.content.includes("HEI ") || msg.content.includes("Hey ") || msg.content.includes("hey ") || msg.content.includes("HEY") || msg.content.includes("Hello ") || msg.content.includes("hello ") || msg.content.includes("HELLO ")) {
+    if (msg.content.includes("Bonjour") || msg.content.includes("bonjour") || msg.content.includes("BONJOUR") || msg.content.includes("Salut") || msg.content.includes("salut") || msg.content.includes("SALUT") || msg.content.includes("Bonsoir") || msg.content.includes("bonsoir") || msg.content.includes("BONSOIR") || msg.content.includes("Hei") || msg.content.includes("hei") || msg.content.includes("HEI") || msg.content.includes("Hey") || msg.content.includes("hey ") || msg.content.includes("HEY") || msg.content.includes("Hello") || msg.content.includes("hello") || msg.content.includes("HELLO")) {
         if (msg.author.bot) return;
         bo = Math.floor(Math.random() * 4 + 1);
         if (bo === 1) {
