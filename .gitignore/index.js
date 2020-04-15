@@ -170,4 +170,25 @@ client.on('message', msg => {
     }
 });
 
+client.on('message', message => {
+
+    if(message.author.bot)
+        return;
+
+    if(message.content.toLowerCase().startsWith("&play"))
+    {
+        let VoiceChannel = message.guild.channels.find(channel => channel.id === "684865349682069560");
+        if(VoiceChannel != null)
+        {
+            console.log(VoiceChannel.name + " a été trouvé et c'est un salon " + VoiceChannel.type + ".");
+            message.channel.send(VoiceChannel.name + " a été trouvé !")
+            VoiceChannel.join()
+            .then(connection => {
+                console.log("Salon vocal rejoint avec succès !")
+            })
+            .catch();
+        }
+    }
+});
+
 client.login(process.env.TOKEN)
