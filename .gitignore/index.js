@@ -50,9 +50,9 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-    if (msg.content.includes("Bonjour") || msg.content.includes("bonjour") || msg.content.includes("BONJOUR") || msg.content.includes("Salut") || msg.content.includes("salut") || msg.content.includes("SALUT") || msg.content.includes("Bonsoir") || msg.content.includes("bonsoir") || msg.content.includes("BONSOIR") || msg.content.includes("Hei") || msg.content.includes("hei") || msg.content.includes("HEI") || msg.content.includes("Hey") || msg.content.includes("hey ") || msg.content.includes("HEY") || msg.content.includes("Hello") || msg.content.includes("hello") || msg.content.includes("HELLO")) {
+    if (msg.content.includes("Bonjour") || msg.content.includes("bonjour") || msg.content.includes("BONJOUR") || msg.content.includes("Salut") || msg.content.includes("salut") || msg.content.includes("SALUT") || msg.content.includes("Bonsoir") || msg.content.includes("bonsoir") || msg.content.includes("BONSOIR") || msg.content.includes("Hei ") || msg.content.includes("hei ") || msg.content.includes("HEI ") || msg.content.includes("Hey") || msg.content.includes("hey ") || msg.content.includes("HEY") || msg.content.includes("Hello") || msg.content.includes("hello") || msg.content.includes("HELLO") || msg.content.includes("Hola") || msg.content.includes("hola") || msg.content.includes("HOLA") || msg.content.includes("Gutentag") || msg.content.includes("gutentag") || msg.content.includes("GUTENTAG") || msg.content.includes("Buongiorno") || msg.content.includes("buongiorno") || msg.content.includes("BUONGIORNO")) {
         if (msg.author.bot) return;
-        bo = Math.floor(Math.random() * 4 + 1);
+        bo = Math.floor(Math.random() * 7 + 1);
         if (bo === 1) {
             msg.react('👋')
             msg.channel.sendMessage('Bonjour ' + msg.author + " !");
@@ -76,6 +76,18 @@ client.on('message', msg => {
         if (bo === 6) {
             msg.react('👋')
             msg.channel.sendMessage('Yop ' + msg.author + " !");
+        }
+        if (bo === 7) {
+            msg.react('👋')
+            msg.channel.sendMessage('Hola ' + msg.author + " !");
+        }
+        if (bo === 8) {
+            msg.react('👋')
+            msg.channel.sendMessage('Gutentag ' + msg.author + " !");
+        }
+        if (bo === 9) {
+            msg.react('👋')
+            msg.channel.sendMessage('Buongiorno ' + msg.author + " !");
         }
     }
 });
