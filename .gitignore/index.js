@@ -17,6 +17,7 @@ client.on('ready', () => {
 
 setInterval(function(){
     currentHour = new Date().getHours();
+    currentHour = currentHour + 2
     currentMin = new Date().getMinutes();
 }, 1000);
 
