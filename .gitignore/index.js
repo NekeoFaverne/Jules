@@ -1,16 +1,36 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+var currentHour = new Date().getHours();
+var currentMin = new Date().getMinutes();
 
 client.on('ready', () => {
     console.log("Connecté en tant que " + client.user.tag + " !")
 
     client.user.setPresence({
         game: {
-            name: "l'inécoutable.",
-            type: 2,
+            name: 'a stream! 😱',
+            type: "STREAMING",
+            url: "https://www.twitch.tv/Nekewo"
         }
     });
 })
+
+setInterval(function(){
+    currentHour = new Date().getHours();
+    currentMin = new Date().getMinutes();
+}, 1000);
+
+client.on("message", (message) => {
+
+if(message.content == "&heure" || message.content == "&hour") {
+    if(currentMin<10){
+        message.channel.send("Il est actuellement " + currentHour + "h0" + currentMin + " " + message.author + " !");
+    }
+    else{
+        message.channel.send("Il est actuellement " + currentHour + "h" + currentMin + " " + message.author + " !");
+    }
+}
+});
 
 client.on('message', msg => {
     if (msg.content.includes("LOL") || msg.content.includes("lol") || msg.content.includes("Lol") || msg.content.includes("MDR ") || msg.content.includes("Mdr") || msg.content.includes("mdr") || msg.content.includes("😂") || msg.content.includes("😆") || msg.content.includes("🤣") || msg.content.includes("xD") || msg.content.includes("xd") || msg.content.includes("XD") || msg.content.includes("x)")) {
