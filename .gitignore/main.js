@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
-const config = require('./configuration/config.json');
+const config = require('./configuration/config');
 var currentHour = new Date().getHours();
 var currentMin = new Date().getMinutes();
 
