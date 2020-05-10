@@ -1,1 +1,1 @@
-worker: node Glede.js
+worker: node main.js
