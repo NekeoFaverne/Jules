@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const config = require('./configuration/config.json');
 var currentHour = new Date().getHours();
 var currentMin = new Date().getMinutes();
 
@@ -23,7 +24,7 @@ setInterval(function(){
 
 client.on("message", (message) => {
 
-if(message.content == "&heure" || message.content == "&hour") {
+if(message.content == (config.prefix + "heure") || message.content == (config.prefix + "hour")) {
     if(currentMin<10){
         message.channel.send("Il est actuellement " + currentHour + "h0" + currentMin + " " + message.author + " !");
     }
@@ -224,4 +225,4 @@ client.on('message', message => {
     }
 });
 
-client.login(process.env.TOKEN)
+client.login(config.token)
