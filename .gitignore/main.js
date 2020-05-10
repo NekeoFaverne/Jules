@@ -1,7 +1,9 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const config = require("./configuration/config.json");
 var currentHour = new Date().getHours();
 var currentMin = new Date().getMinutes();
+let prefix = config.prefix;
 
 client.on('ready', () => {
     console.log("Connecté en tant que " + client.user.tag + " !")
@@ -23,12 +25,22 @@ setInterval(function(){
 
 client.on("message", (message) => {
 
-if(message.content == "&heure" || message.content == "&hour") {
+if((message.content.startsWith(prefix + "heure"))) {
     if(currentMin<10){
         message.channel.send("Il est actuellement " + currentHour + "h0" + currentMin + " " + message.author + " !");
     }
     else{
         message.channel.send("Il est actuellement " + currentHour + "h" + currentMin + " " + message.author + " !");
+    }
+}
+
+if((message.content.startsWith(prefix + "hour"))) {
+    if(currentHour<=12){
+        message.channel.send("It is currently " + currentHour + ":0" + currentMin + " AM " + message.author + " !");
+    }
+    else{
+        currentHourEN = currentHour - 12
+        message.channel.send("It is currently " + currentHourEN + ":" + currentMin + " PM " + message.author + " !");
     }
 }
 });
@@ -203,25 +215,4 @@ client.on('message', msg => {
     }
 });
 
-client.on('message', message => {
-
-    if(message.author.bot)
-        return;
-
-    if(message.content.toLowerCase().startsWith("&play"))
-    {
-        let VoiceChannel = message.guild.channels.find(channel => channel.id === "684865349682069560");
-        if(VoiceChannel != null)
-        {
-            console.log(VoiceChannel.name + " a été trouvé et c'est un salon " + VoiceChannel.type + ".");
-            message.channel.send(VoiceChannel.name + " a été trouvé !")
-            VoiceChannel.join()
-            .then(connection => {
-                console.log("Salon vocal rejoint avec succès !")
-            })
-            .catch();
-        }
-    }
-});
-
-client.login(process.env.TOKEN")
+client.login(config.token)
