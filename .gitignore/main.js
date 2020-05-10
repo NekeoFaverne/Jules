@@ -24,7 +24,7 @@ setInterval(function(){
 
 client.on("message", (message) => {
 
-if(message.content == (config.prefix + "heure") || message.content == (config.prefix + "hour")) {
+if(message.content == "&heure" || message.content == "&hour") {
     if(currentMin<10){
         message.channel.send("Il est actuellement " + currentHour + "h0" + currentMin + " " + message.author + " !");
     }
