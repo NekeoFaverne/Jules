@@ -1,5 +1,4 @@
 {
     "prefix": "&",
-    "token": process.env.TOKEN,
     "ownerID": "448052818314526721"
 }
