@@ -10,19 +10,18 @@ let vote = require("./configuration/vote.json");
 let ping = require("./configuration/ping.json");
 
 let baseprefix = config.prefix
-let gledeversion = "1.0.0"
+let gledeversion = "2.0.0"
 
 var currentHour = new Date().getHours();
 var currentMin = new Date().getMinutes();
 
 client.on('ready', () => {
-  console.log(client.user.username + " connected!")
+  console.log(client.user.username + " connecté!")
 
   client.user.setPresence({
     game: {
-      name: 'a stream! 😱',
-      type: "STREAMING",
-      url: "https://www.twitch.tv/Nekewo"
+      name: '&help',
+      type: "WATCHING"
     }
   });
 });
@@ -33,18 +32,18 @@ function emoji(id) {
 }
 
 //LANCER LES REGLES
-client.on('message', msg => {
-  if (msg.author.id == config.ownerID) {
-    if ((msg.content.startsWith(baseprefix + "rules"))) {
-      msg.channel.send('**__To enter the server, you must accept the rules below:__**\n__http://bit.do/GledeDiscord__\n\n**Of course, you can read them again later!**\n**To continue, click on the emoji** ' + emoji("709059490997075998") + ' **below!**')
-        .then(function(msg) {
-          msg.react("709059490997075998")
-        })
-    }
-  } else {
-    return
-  }
-})
+// client.on('message', msg => {
+//   if (msg.author.id == config.ownerID) {
+//     if ((msg.content.startsWith(baseprefix + "rules"))) {
+//       msg.channel.send('**__To enter the server, you must accept the rules below:__**\n__http://bit.do/GledeDiscord__\n\n**Of course, you can read them again later!**\n**To continue, click on the emoji** ' + emoji("709059490997075998") + ' **below!**')
+//         .then(function(msg) {
+//           msg.react("709059490997075998")
+//         })
+//     }
+//   } else {
+//     return
+//   }
+// })
 
 client.on('message', msg => {
 
@@ -60,9 +59,8 @@ client.on('message', msg => {
   if (msg.channel.type !== 'text') return;
 
   // languages
-  if (msg.content.toLocaleLowerCase().startsWith(prefix + "language") || msg.content.toLocaleLowerCase().startsWith(prefix + "langue") || msg.content.toLocaleLowerCase().startsWith(prefix + "språk")) {
+  if (msg.content.toLocaleLowerCase().startsWith(prefix + "lang") || msg.content.toLocaleLowerCase().startsWith(prefix + "language") || msg.content.toLocaleLowerCase().startsWith(prefix + "langue") || msg.content.toLocaleLowerCase().startsWith(prefix + "språk")) {
     const args = msg.content.slice(prefix.length).split(' ');
-    if (!args[1]) return msg.channel.send("Type `" + prefix + "help language` for more help on this command.");
     // default
     if (!lang[msg.author.id]) {
       lang[msg.author.id] = "EN"
@@ -70,6 +68,17 @@ client.on('message', msg => {
         if (err) throw err;
       });
     };
+    if (!args[1]) {
+      if (lang[msg.author.id] === "EN") {
+        return msg.channel.send("The language is currently set to English. Type the command `"+prefix+"help language` for more help on the command.")
+      } else if (lang[msg.author.id] === "FR") {
+        return msg.channel.send("La langue est actuellement mis en Français. Tapez la commande `"+prefix+"aide langue` pour plus d'aide sur la commande.")
+      } else if (lang[msg.author.id] === "NO") {
+        msg.channel.send("Språket er for øyeblikket satt til Norsk. Skriv inn kommandoen `"+prefix+"hjelpe språk` for mer hjelp.")
+      } else {
+        return msg.channel.send("Error LE1 sent")
+      }
+    }
     // EN LANGUAGE
     if (args[1] === "EN") {
       if (lang[msg.author.id] === "EN") return msg.channel.send("Don't you recognize your language? Don't worry, it's already done. 😉");
@@ -80,7 +89,7 @@ client.on('message', msg => {
           if (err) throw err;
         });
       }
-      // FR LANGUAGE
+    // FR LANGUAGE
     } else if (args[1] === "FR") {
       if (lang[msg.author.id] === "FR") return msg.channel.send("Mdr quoi, tu ne reconnais même pas ta langue... Au cas où, je l'ai fais ne t'inquiètes pas.  😉");
       else {
@@ -90,7 +99,7 @@ client.on('message', msg => {
           if (err) throw err;
         });
       }
-      // NO LANGUAGE
+    // NO LANGUAGE
     } else if (args[1] === "NO") {
       if (lang[msg.author.id] === "NO") return msg.channel.send("Det er allerede på norsk... 😂");
       else {
@@ -100,6 +109,7 @@ client.on('message', msg => {
           if (err) throw err;
         });
       }
+      // unknown language
     } else return msg.channel.send("I don't speak that language, sorry... 😔")
   }
 
@@ -119,19 +129,19 @@ client.on('message', msg => {
             url: "http://google.com",
             description: "Voici la liste des catégories de Glede ! \nPour voir les commandes des catégories, tapez `" + prefix + "aide [categorie]`.\nVous pouvez aussi taper `" + prefix + "help language` pour savoir comment changer de langue.\n­",
             fields: [{
-                name: emoji("722879600480223234") + " Ping",
+                name: emoji("794245707259314196") + " Ping",
                 value: "Savez-vous comment me défier au ping-pong au moins ?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Administration",
+                name: emoji("794245707259314196") + " Administration",
                 value: "Et oui, je peux vous aider à gérer votre serveur Discord !\n­"
               },
               {
-                name: emoji("722879600480223234") + " Customisation",
+                name: emoji("794245707259314196") + " Customisation",
                 value: "Saviez-vous que je pouvais changer l'ambiance de votre serveur ?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Divers",
+                name: emoji("794245707259314196") + " Divers",
                 value: "Toujours plus de commandes !\n­"
               }
             ],
@@ -154,19 +164,19 @@ client.on('message', msg => {
             url: "http://google.com",
             description: "Her er listen over Gledes kategorier! \nHvis du vil se listen over kommandoer i en kategori, skriver `" + prefix + "hjelpe [kategori]`.\nDu kan også skrive `" + prefix + "hjelpe language` for å finne ut hvordan jeg kan endre språket mitt.\n­",
             fields: [{
-                name: emoji("722879600480223234") + " Ping",
+                name: emoji("794245707259314196") + " Ping",
                 value: "Vet du selv hvordan du i det minste skal utfordre meg til bordtennis?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Administrasjon",
+                name: emoji("794245707259314196") + " Administrasjon",
                 value: "Og ja, jeg kan hjelpe deg med å administrere serveren din!\n­"
               },
               {
-                name: emoji("722879600480223234") + " Tilpasning",
+                name: emoji("794245707259314196") + " Tilpasning",
                 value: "Visste du at jeg kunne endre stemningen på serveren din?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Diverse",
+                name: emoji("794245707259314196") + " Diverse",
                 value: "For alltid flere kommandoer!\n­"
               }
             ],
@@ -189,19 +199,19 @@ client.on('message', msg => {
             url: "http://google.com",
             description: "Here is the list of Glede's categories! \nTo see the list of commands in a category, type `" + prefix + "help [category]`.\nYou can also type `" + prefix + "help language` to find out how to change my language.\n­",
             fields: [{
-                name: emoji("722879600480223234") + " Ping",
+                name: emoji("794245707259314196") + " Ping",
                 value: "Do you even know how to challenge me to ping-pong at least?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Administration",
+                name: emoji("794245707259314196") + " Administration",
                 value: "And yes, I can help you manage your server!\n­"
               },
               {
-                name: emoji("722879600480223234") + " Customization",
+                name: emoji("794245707259314196") + " Customization",
                 value: "Did you know I could change the mood of your server?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Misc",
+                name: emoji("794245707259314196") + " Misc",
                 value: "For always more commands!\n­"
               }
             ],
@@ -258,19 +268,19 @@ client.on('message', msg => {
             url: "http://google.com",
             description: "Her er listen over Gledes kategorier! \nHvis du vil se listen over kommandoer i en kategori, skriver `" + prefix + "hjelpe [kategori]`.\nDu kan også skrive `" + prefix + "hjelpe language` for å finne ut hvordan jeg kan endre språket mitt.\n­",
             fields: [{
-                name: emoji("722879600480223234") + " Ping",
+                name: emoji("794245707259314196") + " Ping",
                 value: "Vet du selv hvordan du i det minste skal utfordre meg til bordtennis?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Administrasjon",
+                name: emoji("794245707259314196") + " Administrasjon",
                 value: "Og ja, jeg kan hjelpe deg med å administrere serveren din!\n­"
               },
               {
-                name: emoji("722879600480223234") + " Tilpasning",
+                name: emoji("794245707259314196") + " Tilpasning",
                 value: "Visste du at jeg kunne endre stemningen på serveren din?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Diverse",
+                name: emoji("794245707259314196") + " Diverse",
                 value: "For alltid flere kommandoer!\n­"
               }
             ],
@@ -293,19 +303,19 @@ client.on('message', msg => {
             url: "http://google.com",
             description: "Here is the list of Glede's categories! \nTo see the list of commands in a category, type `" + prefix + "help [category]`.\nYou can also type `" + prefix + "help language` to find out how to change my language.\n­",
             fields: [{
-                name: emoji("722879600480223234") + " Ping",
+                name: emoji("794245707259314196") + " Ping",
                 value: "Do you even know how to challenge me to ping-pong at least?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Administration",
+                name: emoji("794245707259314196") + " Administration",
                 value: "And yes, I can help you manage your server!\n­"
               },
               {
-                name: emoji("722879600480223234") + " Customization",
+                name: emoji("794245707259314196") + " Customization",
                 value: "Did you know I could change the mood of your server?\n­"
               },
               {
-                name: emoji("722879600480223234") + " Misc",
+                name: emoji("794245707259314196") + " Misc",
                 value: "For always more commands!\n­"
               }
             ],
